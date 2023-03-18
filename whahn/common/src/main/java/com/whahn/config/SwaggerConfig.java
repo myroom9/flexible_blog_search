@@ -2,7 +2,7 @@ package com.whahn.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
-import org.springdoc.core.GroupedOpenApi;
+import org.springdoc.core.models.GroupedOpenApi;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -11,8 +11,8 @@ public class SwaggerConfig {
     @Bean
     public GroupedOpenApi api() {
         return GroupedOpenApi.builder()
-                .group("swagger test")
-                .pathsToMatch("/api/v1/**")
+                .group("swagger")
+                .pathsToMatch("/v1/**")
                 .build();
     }
 
@@ -20,8 +20,8 @@ public class SwaggerConfig {
     public OpenAPI swaggerUiSetting() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("카카오페이 코딩 과제 API SWAGGER DOCS")
-                        .description("카카오페이 멤버십 서비스 API LIST")
+                        .title("블로그 / 인기검색어 API SWAGGER DOCS")
+                        .description("블로그 / 인기검색어 API LIST")
                         .version("v1.0.0")
                 );
     }
