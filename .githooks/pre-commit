@@ -1,0 +1,45 @@
+#!/bin/bash
+
+RED='\033[0;31;1m'
+GREEN='\033[0;32;1m'
+REMOVE_COLOR='\033[0m'
+#
+# for each module
+PROJECT_ROOT_DIR=$(git rev-parse --show-toplevel)
+BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
+PROJECT_NAME="multi_blog_search"
+PREFIX_CODE="WHAHN"
+
+if [[ "${BRANCH_NAME}" == *"/"* ]];then
+  PREFIX=$(echo ${BRANCH_NAME} | cut -d '/' -f1)
+  PREFIX_CODE=$(echo ${BRANCH_NAME} | cut -d '/' -f2)
+fi
+
+echo "${PREFIX_CODE}"
+echo "${PREFIX}"
+
+#for project in ${lintProjects[@]}
+#do
+    # Checkstyle
+if [[ "${PREFIX}" == "feature" ]];then
+    printf "${GREEN}###### [PRE-COMMIT] START EXECUTE CHECKSTYLE TASK FOR ${PROJECT_NAME} #####${REMOVE_COLOR}\n"
+    checkstylePath="${PROJECT_NAME}/build/reports/checkstyle/checkstyle.html"
+    echo "checkstylePath=${checkstylePath}"
+    printf "${RED}STEP 1 COMPLETE....\n"
+    printf "$0 IS WORKING...${REMOVE_COLOR}\n"
+    ./gradlew checkstyle >/dev/null
+    printf "${RED}STEP 2 COMPLETE....${REMOVE_COLOR}\n"
+    checkstyleStatus=$?
+    if [ $checkstyleStatus -ne 0 ]
+    then
+        printf "${RED}Failed, ${PROJECT_NAME} project has checkstyle issues!${REMOVE_COLOR}"
+        open ${PROJECT_ROOT_DIR}/${checkstylePath}
+        exit $checkstyleStatus
+    fi
+    printf "${GREEN}checkstyle task is done for %s${REMOVE_COLOR}\n\n" "${PROJECT_NAME}"
+else
+  echo "THIS BRANCH IS NOT feature BRANCH"
+  echo "So, JUST PASS ANY TASK"
+fi
+#done
+#
