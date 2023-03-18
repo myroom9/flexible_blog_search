@@ -42,7 +42,7 @@ public class GlobalExceptionAdvice {
     }
 
     @ExceptionHandler(MissingServletRequestParameterException.class)
-    public ResponseEntity<?> MissingServletRequestParameterExceptionExceptionAdvice(MissingServletRequestParameterException e) {
+    public ResponseEntity<?> missingServletRequestParameterExceptionExceptionAdvice(MissingServletRequestParameterException e) {
         return entity(ErrorCode.NOT_CORRECT_VALUE, e);
     }
 

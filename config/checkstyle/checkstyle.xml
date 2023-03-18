@@ -312,6 +312,7 @@
         <!--<module name="InvalidJavadocPosition"/>-->
         <module name="JavadocTagContinuationIndentation"/>
         <module name="SummaryJavadoc">
+            <property name="period" value=""/>
             <property name="forbiddenSummaryFragments"
                       value="^@return the *|^This method returns |^A [{]@code [a-zA-Z0-9]+[}]( is a )"/>
         </module>
@@ -343,6 +344,10 @@
                       RECORD_DEF, ANNOTATION_DEF"/>
             <property name="excludeScope" value="nothing"/>
         </module>-->
+        <module name="JavadocStyle">
+            <property name="checkFirstSentence" value="false"/>
+        </module>
+
         <module name="MethodName">
             <property name="format" value="^[a-z][a-z0-9][a-zA-Z0-9_]*$"/>
             <message key="name.invalidPattern"

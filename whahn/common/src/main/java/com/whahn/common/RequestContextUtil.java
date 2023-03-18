@@ -11,9 +11,7 @@ public class RequestContextUtil {
     private static final String REQUEST_DATE = "requestDate";
 
     /**
-     * 요청 ID, 시간 저장
-     *
-     * @param obj
+     * 요청 ID, 시간 저장.
      */
     public static void setRequestId(String obj) {
         setAttr(REQUEST_ID, obj);
@@ -21,28 +19,21 @@ public class RequestContextUtil {
     }
 
     /**
-     * 요청 ID 반환
-     *
-     * @return
+     * 요청 ID 반환.
      */
     public static String getRequestId() {
         return (String) getAttr(REQUEST_ID);
     }
 
     /**
-     * 요청 시간 반환
-     *
-     * @return
+     * 요청 시간 반환.
      */
     public static LocalDateTime getRequestDate() {
         return (LocalDateTime) getAttr(REQUEST_DATE);
     }
 
     /**
-     * Request 영역에서 객체를 꺼내온다
-     *
-     * @param name
-     * @return
+     * Request 영역에서 객체를 꺼내온다.
      */
     public static Object getAttr(String name) {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
@@ -50,10 +41,7 @@ public class RequestContextUtil {
     }
 
     /**
-     * Request 영역에 객체를 저정한다
-     *
-     * @param key
-     * @param obj
+     * Request 영역에 객체를 저정한다.
      */
     public static void setAttr(String key, Object obj) {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
