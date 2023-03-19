@@ -15,8 +15,9 @@ public class CustomRequestPaging {
     @Parameter
     private Integer page = 1;
 
-    @Schema(description = "조회 페이지 크기", defaultValue = "1")
-    private Integer size = 1;
+    @Schema(description = "조회 페이지 크기", defaultValue = "10")
+    @Parameter
+    private Integer size = 10;
 
     @Schema(description = "조회 정렬 조건 (accuracy, currency)", defaultValue = "accuracy")
     @Parameter

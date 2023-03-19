@@ -22,7 +22,7 @@ public class BlogSearchPagingResponse {
 
     @Data
     @Builder
-    private static class Meta {
+    public static class Meta {
         private int currentPage;
         private int totalContentCount;
         private int size;
@@ -30,6 +30,9 @@ public class BlogSearchPagingResponse {
     }
 
     @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class Document {
         private String title;
         private String contents;

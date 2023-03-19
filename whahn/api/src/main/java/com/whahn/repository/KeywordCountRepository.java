@@ -13,6 +13,6 @@ public interface KeywordCountRepository extends JpaRepository<KeywordCount, Long
     Optional<KeywordCount> findKeywordCountByKeyword(String keyword);
 
     // 검색 횟수 상위 10개 키워드 가져오기
-    @Query("SELECT k FROM KeywordCount k WHERE k.deletedAt IS NULL ORDER BY k.count DESC, k.updatedAt ASC LIMIT 10")
+    @Query("SELECT k FROM KeywordCount k WHERE k.deletedAt IS NULL ORDER BY k.count DESC, k.updatedAt DESC LIMIT 10")
     List<KeywordCount> findTopTenKeywordByCount();
 }

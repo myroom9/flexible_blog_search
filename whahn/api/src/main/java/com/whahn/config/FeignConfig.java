@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @EnableFeignClients(basePackages = "com.whahn.feign")
-@Configuration
+@Configuration(proxyBeanMethods = false)
 public class FeignConfig {
     @Bean
     Logger.Level feignLoggerLevel() {

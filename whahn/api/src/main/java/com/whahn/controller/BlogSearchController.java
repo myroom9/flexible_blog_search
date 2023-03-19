@@ -4,7 +4,6 @@ import com.whahn.common.ApiResponse;
 import com.whahn.controller.dto.BlogSearchPagingResponse;
 import com.whahn.controller.dto.CustomRequestPaging;
 import com.whahn.facade.BlogFacade;
-import com.whahn.service.KakaoBlogService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
