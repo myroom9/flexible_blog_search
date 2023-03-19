@@ -60,7 +60,7 @@ subprojects {
         def projectName = ":${it}-${dir.name}"
         project(projectName){
             bootJar.enabled(true)
-            jar.enabled(false)
+            jar.enabled(true)
         }
     }
 }
