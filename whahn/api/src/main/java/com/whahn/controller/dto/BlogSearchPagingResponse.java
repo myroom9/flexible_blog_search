@@ -3,6 +3,7 @@ package com.whahn.controller.dto;
 import com.whahn.common.ModelMapperUtil;
 import com.whahn.entity.KeywordCount;
 import com.whahn.feign.dto.KakaoBlogContent;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,22 +11,30 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+@Schema(description = "블로그/인기검색어 응답 객체")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class BlogSearchPagingResponse {
 
+    @Schema(description = "블로그/인기검색어 응답 META 정보")
     private Meta meta;
+    @Schema(description = "블로그 응답값")
     private List<Document> document;
+    @Schema(description = "인기 검색어 탑 10 !")
     private List<TopTenKeyword> topTenKeywords;
 
     @Data
     @Builder
     public static class Meta {
+        @Schema(description = "현재 페이지")
         private int currentPage;
+        @Schema(description = "컨텐츠 총 개수")
         private int totalContentCount;
+        @Schema(description = "페이징 사이즈")
         private int size;
+        @Schema(description = "마지막 페이지 여부")
         private boolean isEnd;
     }
 
@@ -34,19 +43,26 @@ public class BlogSearchPagingResponse {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class Document {
+        @Schema(description = "블로그 글제목")
         private String title;
+        @Schema(description = "블로그 내용")
         private String contents;
+        @Schema(description = "블로그 URL")
         private String url;
+        @Schema(description = "블로그명")
         private String blogname;
 
-        // thumnail이 존재하지 않으면 default 값 넣어서 전달
+        @Schema(description = "블로그 썸네일")
         private String thumbnail;
+        @Schema(description = "블로그 글 등록시간")
         private String datetime;
     }
 
     @Data
     public static class TopTenKeyword {
+        @Schema(description = "인기 검색어")
         private String keyword;
+        @Schema(description = "인기 검색어 검색 횟수")
         private long count;
 
         public TopTenKeyword(KeywordCount keywordCount) {
@@ -72,7 +88,7 @@ public class BlogSearchPagingResponse {
                 .size(request.getSize())
                 .currentPage(request.getPage())
                 .totalContentCount(contents.getMeta().getPageableCount())
-                .isEnd(false)
+                .isEnd(contents.getMeta().isEnd())
                 .build();
 
         List<Document> documents = contents.getDocuments().stream()

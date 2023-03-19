@@ -12,23 +12,23 @@ import org.springdoc.core.annotations.ParameterObject;
 @ParameterObject
 public class CustomRequestPaging {
     @Schema(description = "조회 요청 페이지", defaultValue = "1")
-    @Parameter
+    @Parameter(description = "조회 요청 페이지")
     private Integer page = 1;
 
     @Schema(description = "조회 페이지 크기", defaultValue = "10")
-    @Parameter
+    @Parameter(description = "조회 페이지 크기")
     private Integer size = 10;
 
     @Schema(description = "조회 정렬 조건 (accuracy, currency)", defaultValue = "accuracy")
-    @Parameter
+    @Parameter(description = "조회 정렬 조건 (accuracy, currency)")
     private SortType sortType = SortType.ACCURACY;
 
     @Schema(description = "조회 blog 회사 (KAKAO, NAVER)", defaultValue = "KAKAO")
-    @Parameter
+    @Parameter(description = "조회 blog 회사 (KAKAO, NAVER)")
     private CorporationType corporationType = CorporationType.KAKAO;
 
     @Schema(description = "조회 키워드")
-    @Parameter(required = true)
+    @Parameter(required = true, description = "조회 키워드")
     @NotBlank
     private String searchKeyword;
 }
