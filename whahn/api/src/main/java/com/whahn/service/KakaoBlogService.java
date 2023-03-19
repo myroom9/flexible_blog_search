@@ -23,7 +23,7 @@ public class KakaoBlogService implements BlogService {
      * 카카오 API 메타 정보 가져오기
      */
     @Override
-    public ApiMetaInformation getMetaInformation() {
+    public ApiMetaInformation getApiMetaInformation() {
         return apiMetaInformationService.getApiMetaInformationByCorporationName(CorporationType.KAKAO.getCorporationName());
     }
 

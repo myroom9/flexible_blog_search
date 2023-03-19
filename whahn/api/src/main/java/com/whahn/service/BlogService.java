@@ -9,7 +9,7 @@ import com.whahn.entity.ApiMetaInformation;
  */
 public interface BlogService {
     // api 메타정보 조회
-    ApiMetaInformation getMetaInformation();
+    ApiMetaInformation getApiMetaInformation();
 
     // 블로그 정보 조회 요청
     BlogSearchPagingResponse getBlogContents(CustomRequestPaging request, ApiMetaInformation apiMetaInformation);
