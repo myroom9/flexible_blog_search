@@ -4,7 +4,6 @@ import com.whahn.common.ErrorCode;
 import com.whahn.common.ErrorResponse;
 import com.whahn.exception.cumtom.BusinessException;
 import com.whahn.exception.cumtom.FeignClientException;
-import com.whahn.exception.cumtom.FeignServerException;
 import jakarta.servlet.ServletException;
 import jakarta.validation.ConstraintViolationException;
 import lombok.RequiredArgsConstructor;
