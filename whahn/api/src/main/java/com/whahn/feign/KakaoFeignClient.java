@@ -15,8 +15,8 @@ import java.util.List;
 public interface KakaoFeignClient {
     @GetMapping(value = "/v2/search/blog", consumes = MediaType.APPLICATION_JSON_VALUE)
     KakaoBlogContent getBlogContents(@RequestHeader("Authorization") String apiKey,
-                                                          @RequestParam("query") String searchKeyword,
-                                                          @RequestParam("sort") String sortType,
-                                                          @RequestParam("page") int page, @RequestParam("size") int size);
+                                     @RequestParam("query") String searchKeyword,
+                                     @RequestParam("sort") String sortType,
+                                     @RequestParam("page") int page, @RequestParam("size") int size);
 
 }

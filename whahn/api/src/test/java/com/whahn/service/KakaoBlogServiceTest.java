@@ -3,6 +3,7 @@ package com.whahn.service;
 import com.whahn.controller.dto.BlogSearchPagingResponse;
 import com.whahn.controller.dto.CustomRequestPaging;
 import com.whahn.entity.ApiMetaInformation;
+import com.whahn.exception.cumtom.FeignClientException;
 import com.whahn.type.blog.CorporationType;
 import com.whahn.type.blog.SortType;
 import org.assertj.core.api.Assertions;
@@ -51,9 +52,28 @@ class KakaoBlogServiceTest {
     @Test
     @DisplayName("[예외] 카카오 블로그 검색 API 요청 (apiKey 실패)")
     void getBlogContentsExceptionTest() {
-        /*ApiMetaInformation apiMetaInformation = ApiMetaInformation.builder().apiKey("test").corporationName(CorporationType.KAKAO.getCorporationName()).build();
+        ApiMetaInformation apiMetaInformation = ApiMetaInformation.builder().apiKey("test").corporationName(CorporationType.KAKAO.getCorporationName()).build();
         CustomRequestPaging mockCustomRequestPaging = getMockCustomRequestPaging();
-        kakaoBlogService.getBlogContents(mockCustomRequestPaging, apiMetaInformation);*/
+
+        FeignClientException exception = assertThrows(FeignClientException.class, () -> {
+            kakaoBlogService.getBlogContents(mockCustomRequestPaging, apiMetaInformation);
+        });
+
+        Assertions.assertThat(exception.getLocalizedMessage()).isEqualTo("API 통신 에러 발생 사유: wrong appKey(test) format");
+    }
+
+    @Test
+    @DisplayName("[예외] 카카오 블로그 검색 API 요청 (max page 이상 요청)")
+    void getBlogContentsExceptionTest2() {
+        ApiMetaInformation apiMetaInformation = ApiMetaInformation.builder().apiKey("01975332e2b1c7d87aaaf0efa345bb52").corporationName(CorporationType.KAKAO.getCorporationName()).build();
+        CustomRequestPaging mockCustomRequestPaging = getMockCustomRequestPaging();
+        mockCustomRequestPaging.setPage(51);
+
+        FeignClientException exception = assertThrows(FeignClientException.class, () -> {
+            kakaoBlogService.getBlogContents(mockCustomRequestPaging, apiMetaInformation);
+        });
+
+        Assertions.assertThat(exception.getLocalizedMessage()).isEqualTo("API 통신 에러 발생 사유: page is more than max");
     }
 
 }

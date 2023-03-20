@@ -3,6 +3,8 @@ package com.whahn.exception;
 import com.whahn.common.ErrorCode;
 import com.whahn.common.ErrorResponse;
 import com.whahn.exception.cumtom.BusinessException;
+import com.whahn.exception.cumtom.FeignClientException;
+import com.whahn.exception.cumtom.FeignServerException;
 import jakarta.servlet.ServletException;
 import jakarta.validation.ConstraintViolationException;
 import lombok.RequiredArgsConstructor;
@@ -51,8 +53,21 @@ public class GlobalExceptionAdvice {
         return entity(ErrorCode.INTERNAL_EXCEPTION, e);
     }
 
+    /**
+     * business exception
+     * 비지니스 로직에서 에러 발생한 케이스
+     */
     @ExceptionHandler(BusinessException.class)
     public ResponseEntity<ErrorResponse> businessExceptionAdvice(BusinessException e) {
+        return entity(e.getErrorCode(), e, e.getLocalizedMessage());
+    }
+
+    /**
+     * feign client exception
+     * 통신하다가 발생한 에러 케이스
+     */
+    @ExceptionHandler({FeignClientException.class})
+    protected ResponseEntity<ErrorResponse> handleBindException(FeignClientException e) {
         return entity(e.getErrorCode(), e, e.getLocalizedMessage());
     }
 
