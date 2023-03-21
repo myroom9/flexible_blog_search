@@ -16,7 +16,7 @@ public class CustomRequestPaging {
     private Integer page = 1;
 
     @Schema(description = "조회 페이지 크기", defaultValue = "10")
-    @Parameter(description = "조회 페이지 크기")
+    @Parameter(description = "조회 페이지 크기 (51입력시 카카오API error로 자동으로 네이버 API연동됨)")
     private Integer size = 10;
 
     @Schema(description = "조회 정렬 조건 (accuracy, currency)", defaultValue = "accuracy")

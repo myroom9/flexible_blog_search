@@ -31,7 +31,7 @@ class ApiMetaInformationServiceTest {
     @DisplayName("[예외] apiMeta 정보 가져오기 예외")
     void getApiMetaInformationByCorporationNameExceptionTest() {
         BusinessException exception = assertThrows(BusinessException.class, () -> {
-            apiMetaInformationService.getApiMetaInformationByCorporationName(CorporationType.NAVER.getCorporationName());
+            apiMetaInformationService.getApiMetaInformationByCorporationName(CorporationType.EXTRA.getCorporationName());
         });
 
         Assertions.assertThat(exception.getErrorCode()).isEqualTo(ErrorCode.NOT_SUPPORT_API_CORPORATION);

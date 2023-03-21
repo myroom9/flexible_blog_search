@@ -20,7 +20,7 @@ public class BlogSearchController {
 
     private final BlogFacade blogFacade;
 
-    @GetMapping("/v1/blog")
+    @GetMapping("/v1/search/blog")
     @Operation(summary = "블로그 조회 (정확도, 최신수)")
     public ApiResponse<BlogSearchPagingResponse> searchBlog(@Valid CustomRequestPaging request) {
         BlogSearchPagingResponse response = blogFacade.getBlogContents(request);

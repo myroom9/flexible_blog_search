@@ -16,11 +16,11 @@ import org.hibernate.annotations.Where;
 public class ApiMetaInformation extends BaseEntity {
 
     @Builder
-    public ApiMetaInformation(String corporationName, String apiKey) {
+    public ApiMetaInformation(String corporationName, String apiKey, String extraKey) {
         this.corporationName = corporationName;
         this.apiKey = apiKey;
+        this.extraKey = extraKey;
     }
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,4 +31,7 @@ public class ApiMetaInformation extends BaseEntity {
 
     @Column(name = "api_key", length = 100, nullable = false)
     private String apiKey;
+
+    @Column(name = "extra_key", length = 100)
+    private String extraKey;
 }

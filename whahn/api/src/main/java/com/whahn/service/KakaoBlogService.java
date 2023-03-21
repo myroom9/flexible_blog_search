@@ -3,7 +3,7 @@ package com.whahn.service;
 import com.whahn.controller.dto.BlogSearchPagingResponse;
 import com.whahn.controller.dto.CustomRequestPaging;
 import com.whahn.entity.ApiMetaInformation;
-import com.whahn.feign.KakaoFeignClient;
+import com.whahn.feign.kakao.KakaoFeignClient;
 import com.whahn.feign.dto.KakaoBlogContent;
 import com.whahn.type.blog.CorporationType;
 import lombok.RequiredArgsConstructor;
@@ -36,7 +36,7 @@ public class KakaoBlogService implements BlogService {
                 kakaoFeignClient.getBlogContents(
                         String.format("KakaoAK %s", apiMetaInformation.getApiKey()),
                         request.getSearchKeyword(),
-                        request.getSortType().getValue(),
+                        request.getSortType().getKakaoSortValue(),
                         request.getPage(),
                         request.getSize());
         log.info("카카오 블로그 검색 결과: {}", blogContents);

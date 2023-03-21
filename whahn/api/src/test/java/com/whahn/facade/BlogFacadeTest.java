@@ -3,8 +3,10 @@ package com.whahn.facade;
 import com.whahn.controller.dto.BlogSearchPagingResponse;
 import com.whahn.controller.dto.CustomRequestPaging;
 import com.whahn.entity.KeywordCount;
+import com.whahn.exception.cumtom.FeignClientException;
 import com.whahn.service.KakaoBlogService;
 import com.whahn.service.KeywordCountService;
+import com.whahn.service.NaverBlogService;
 import com.whahn.type.blog.CorporationType;
 import com.whahn.type.blog.SortType;
 import org.assertj.core.api.Assertions;
@@ -28,6 +30,8 @@ class BlogFacadeTest {
 
     @Mock
     private KakaoBlogService kakaoBlogService;
+    @Mock
+    private NaverBlogService naverBlogService;
     @Mock
     private KeywordCountService keywordCountService;
     @InjectMocks
@@ -71,7 +75,7 @@ class BlogFacadeTest {
 
     @Test
     @DisplayName("[성공] 블로그 검색 API FACADE 테스트")
-    void getBlogContents() {
+    void getBlogContentsSucessTest() {
         Mockito.when(kakaoBlogService.getBlogContents(ArgumentMatchers.any(), ArgumentMatchers.any()))
                 .thenReturn(getBlogSearchPagingResponse());
 
@@ -83,7 +87,25 @@ class BlogFacadeTest {
         Assertions.assertThat(blogContents.getMeta()).isNotNull();
         Assertions.assertThat(blogContents.getDocument().size()).isEqualTo(1);
         Assertions.assertThat(blogContents.getTopTenKeywords().size()).isEqualTo(10);
+    }
 
+    @Test
+    @DisplayName("[성공] 블로그 검색 API FACADE 테스트 (카카오 API 실패시)")
+    void getBlogContentsSuccessTest2() {
+        Mockito.when(kakaoBlogService.getBlogContents(ArgumentMatchers.any(), ArgumentMatchers.any()))
+                .thenThrow(FeignClientException.class);
+
+        Mockito.when(naverBlogService.getBlogContents(ArgumentMatchers.any(), ArgumentMatchers.any()))
+                .thenReturn(getBlogSearchPagingResponse());
+
+        Mockito.when(keywordCountService.getKeywordCountList())
+                .thenReturn(getKeywordCountList());
+
+        BlogSearchPagingResponse blogContents = blogFacade.getBlogContents(getMockRequest());
+
+        Assertions.assertThat(blogContents.getMeta()).isNotNull();
+        Assertions.assertThat(blogContents.getDocument().size()).isEqualTo(1);
+        Assertions.assertThat(blogContents.getTopTenKeywords().size()).isEqualTo(10);
     }
 
 }

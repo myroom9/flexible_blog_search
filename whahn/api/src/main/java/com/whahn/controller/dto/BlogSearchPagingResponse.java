@@ -3,6 +3,7 @@ package com.whahn.controller.dto;
 import com.whahn.common.ModelMapperUtil;
 import com.whahn.entity.KeywordCount;
 import com.whahn.feign.dto.KakaoBlogContent;
+import com.whahn.feign.dto.NaverBlogContent;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -56,6 +57,14 @@ public class BlogSearchPagingResponse {
         private String thumbnail;
         @Schema(description = "블로그 글 등록시간")
         private String datetime;
+
+        public Document(NaverBlogContent.Document document) {
+            this.setTitle(document.getTitle());
+            this.setBlogname(document.getBloggername());
+            this.setUrl(document.getLink());
+            this.setContents(document.getDescription());
+            this.setDatetime(document.getPostdate());
+        }
     }
 
     @Data
@@ -93,6 +102,33 @@ public class BlogSearchPagingResponse {
 
         List<Document> documents = contents.getDocuments().stream()
                 .map(o -> ModelMapperUtil.map(o, Document.class))
+                .toList();
+
+        return BlogSearchPagingResponse
+                .builder()
+                .meta(meta)
+                .document(documents)
+                .build();
+    }
+
+    /**
+     * 네이버 블로그 응답 객체를 엔드유저한테 응답하는 객체로 매핑
+     */
+    public static BlogSearchPagingResponse naverBlogResultToEntity(CustomRequestPaging request, NaverBlogContent contents) {
+        int totalContentCount = contents.getTotal();
+        int size = request.getSize();
+        int page = request.getPage();
+        boolean isEnd = totalContentCount == 0 || totalContentCount <= (size * page);
+
+        Meta meta = Meta.builder()
+                .size(size)
+                .currentPage(page)
+                .totalContentCount(totalContentCount)
+                .isEnd(isEnd)
+                .build();
+
+        List<Document> documents = contents.getItems().stream()
+                .map(Document::new)
                 .toList();
 
         return BlogSearchPagingResponse

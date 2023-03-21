@@ -42,7 +42,7 @@ class ApiMetaInformationRepositoryTest {
     @Test
     @DisplayName("[성공] api 메타정보 가져오기 by 회사명 (null)")
     void findApiMetaInformationByCorporationNameSuccessTest2() {
-        ApiMetaInformation emptyApiMetaInformation = apiMetaInformationRepository.findApiMetaInformationByCorporationName(CorporationType.NAVER.getCorporationName())
+        ApiMetaInformation emptyApiMetaInformation = apiMetaInformationRepository.findApiMetaInformationByCorporationName(CorporationType.EXTRA.getCorporationName())
                 .orElse(null);
         Assertions.assertThat(emptyApiMetaInformation).isNull();
     }

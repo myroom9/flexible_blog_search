@@ -2,6 +2,7 @@ package com.whahn.exception.cumtom;
 
 import com.whahn.common.ErrorCode;
 import lombok.Getter;
+import org.springframework.util.ObjectUtils;
 
 /**
  * feign 400 ~ 499 error

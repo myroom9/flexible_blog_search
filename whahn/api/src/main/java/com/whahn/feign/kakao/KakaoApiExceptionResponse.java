@@ -1,11 +1,11 @@
-package com.whahn.feign;
+package com.whahn.feign.kakao;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ApiExceptionResponse {
+public class KakaoApiExceptionResponse {
     private int status;
     private String message;
     private String errorType;

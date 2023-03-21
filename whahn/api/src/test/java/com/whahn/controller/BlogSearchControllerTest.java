@@ -21,7 +21,6 @@ import static com.whahn.controller.dto.BlogSearchPagingResponse.*;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -82,10 +81,10 @@ class BlogSearchControllerTest {
         given(blogFacade.getBlogContents(getMockCustomRequestPaging()))
                 .willReturn(getMockBlogSearchPagingResponse());
 
-        mockMvc.perform(get("/v1/blog")
+        mockMvc.perform(get("/v1/search/blog")
                 .param("page", "1")
                 .param("size", "10")
-                .param("sortType", SortType.ACCURACY.getValue())
+                .param("sortType", SortType.ACCURACY.getKakaoSortValue())
                 .param("corporationType", CorporationType.KAKAO.toString())
                 .param("searchKeyword", "테스트"))
                 .andDo(print())
