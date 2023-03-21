@@ -9,14 +9,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
  * yyyyMMdd 형태는 Date -> LocalDateTime 순으로 변환
  */
-public class CustomLocalDateTimeDeserializer extends JsonDeserializer<LocalDateTime> {
+public class DateToLocalDateTimeDeserializer extends JsonDeserializer<LocalDateTime> {
     @Override
     public LocalDateTime deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");

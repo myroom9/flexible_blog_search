@@ -35,7 +35,6 @@ public class BlogFacade {
         keywordCountService.addKeywordCount(keywordCount);
 
         var blogService = getBlogServiceByCorporationType(request.getCorporationType());
-        // TODO: 시간 매핑 필요함
         ApiMetaInformation apiMetaInformation = blogService.getApiMetaInformation();
 
         BlogSearchPagingResponse blogContents;
@@ -43,7 +42,7 @@ public class BlogFacade {
              blogContents = blogService.getBlogContents(request, apiMetaInformation);
         } catch (FeignClientException e) {
             // 위의 블로그 검색 실패시 무조건 네이버 API로 요청
-            log.error("카카오 API 통신 장애 발생", e);
+            log.error("블로그 검색 API 통신 장애 발생", e);
             apiMetaInformation = naverBlogService.getApiMetaInformation();
             blogContents = naverBlogService.getBlogContents(request, apiMetaInformation);
         }

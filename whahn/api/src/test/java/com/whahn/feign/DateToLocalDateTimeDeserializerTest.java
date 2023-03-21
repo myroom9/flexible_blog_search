@@ -12,7 +12,7 @@ import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CustomLocalDateTimeDeserializerTest {
+class DateToLocalDateTimeDeserializerTest {
 
     @Test
     @DisplayName("[성공] 20230302 String to LocalDateTime")

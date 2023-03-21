@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ZoneDateTimeDeserializerTest {
+class ZonedDateTimeToLocalDateTimeDeserializerTest {
 
     @Test
     @DisplayName("[성공] zoneDateTime to LocalDateTime 변환")

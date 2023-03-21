@@ -1,15 +1,10 @@
 package com.whahn.feign.naver;
 
-import com.whahn.feign.CustomDecoder;
-import com.whahn.feign.naver.NaverCustomErrorDecoder;
 import feign.Logger;
 import feign.Request;
 import feign.codec.Decoder;
 import feign.codec.ErrorDecoder;
-import feign.jackson.JacksonDecoder;
-import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 import java.util.concurrent.TimeUnit;
 
@@ -27,7 +22,7 @@ public class NaverFeignConfig {
 
     @Bean
     public Decoder feignDecoder() {
-        return new CustomDecoder();
+        return new NaverCustomFeignDecoder();
     }
 
     @Bean
