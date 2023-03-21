@@ -1,5 +1,6 @@
 package com.whahn.feign.naver;
 
+import com.whahn.feign.CustomDecoder;
 import com.whahn.feign.naver.NaverCustomErrorDecoder;
 import feign.Logger;
 import feign.Request;
@@ -26,7 +27,7 @@ public class NaverFeignConfig {
 
     @Bean
     public Decoder feignDecoder() {
-        return new JacksonDecoder();
+        return new CustomDecoder();
     }
 
     @Bean

@@ -10,6 +10,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Schema(description = "블로그/인기검색어 응답 객체")
@@ -56,7 +57,7 @@ public class BlogSearchPagingResponse {
         @Schema(description = "블로그 썸네일")
         private String thumbnail;
         @Schema(description = "블로그 글 등록시간")
-        private String datetime;
+        private LocalDateTime datetime;
 
         public Document(NaverBlogContent.Document document) {
             this.setTitle(document.getTitle());

@@ -1,11 +1,13 @@
 package com.whahn.feign.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -40,6 +42,8 @@ public class KakaoBlogContent {
         private String url;
         private String blogname;
         private String thumbnail;
-        private String datetime;
+
+        @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "Asia/Seoul", shape = JsonFormat.Shape.STRING)
+        private LocalDateTime datetime;
     }
 }

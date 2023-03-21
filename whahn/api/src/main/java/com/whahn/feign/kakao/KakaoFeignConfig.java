@@ -1,5 +1,6 @@
 package com.whahn.feign.kakao;
 
+import com.whahn.feign.CustomDecoder;
 import com.whahn.feign.kakao.KakaoCustomErrorDecoder;
 import feign.Logger;
 import feign.Request;
@@ -26,7 +27,7 @@ public class KakaoFeignConfig {
 
     @Bean
     public Decoder feignDecoder() {
-        return new JacksonDecoder();
+        return new CustomDecoder();
     }
 
     @Bean

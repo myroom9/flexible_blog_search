@@ -1,10 +1,12 @@
 package com.whahn.feign.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -29,6 +31,8 @@ public class NaverBlogContent {
         private String description;
         private String bloggername;
         private String bloggerlink;
-        private String postdate;
+
+        @JsonFormat(pattern = "yyyyMMdd", shape = JsonFormat.Shape.STRING)
+        private LocalDateTime postdate;
     }
 }
