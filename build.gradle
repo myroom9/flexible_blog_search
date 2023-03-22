@@ -9,7 +9,7 @@ plugins {
 
 allprojects {
     group = 'com.whahn'
-    version = '1.0.0'
+    version = '1.0'
 
     repositories {
         mavenCentral()
@@ -60,7 +60,7 @@ subprojects {
         def projectName = ":${it}-${dir.name}"
         project(projectName){
             bootJar.enabled(true)
-            jar.enabled(false)
+            jar.enabled(true)
         }
     }
 }

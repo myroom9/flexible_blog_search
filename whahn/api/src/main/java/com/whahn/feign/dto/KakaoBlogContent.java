@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -40,6 +41,7 @@ public class KakaoBlogContent {
         private String url;
         private String blogname;
         private String thumbnail;
-        private String datetime;
+
+        private LocalDateTime datetime;
     }
 }

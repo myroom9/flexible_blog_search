@@ -10,6 +10,7 @@ public enum CorporationType {
 
     KAKAO("kakao", "카카오API"),
     NAVER("naver", "네이버API"),
+    EXTRA("extra", "extraAPI"),
     ;
 
     private final String corporationName;
