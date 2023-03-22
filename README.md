@@ -13,8 +13,7 @@
     - 상위 키워드 검색 API
     - ```
       http://localhost:8080/v1/topten-keyword
-    
-- api 명세서 link:
+- api 명세서 link:https://github.com/myroom9/flexible_blog_search/blob/main/whahn-blog-api.jar
 - api 명세서 local에서 보는방법: http://localhost:8080/swagger-ui/index.html
 
 ### 개발환경
@@ -36,6 +35,7 @@
 - ### 패키지 형태
   - 레이어드 아키텍쳐로 가져감
   - 멀티모듈 구현 (공통, api 통신부)
+    - settings.gradle에 디렉토리 생성 후 빌드만 하면 기본 디렉토리 생성되게끔 생성
 
 - ### 개발패턴 
   - naver/kakao 블로그 API는 blogService를 interface화 시켜서 활용 
