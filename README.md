@@ -13,7 +13,7 @@
     - 상위 키워드 검색 API
     - ```
       http://localhost:8080/v1/topten-keyword
-- api 명세서 link:https://github.com/myroom9/flexible_blog_search/blob/main/whahn-blog-api.jar
+- jar donwload link:https://github.com/myroom9/flexible_blog_search/blob/main/whahn-blog-api.jar
 - api 명세서 local에서 보는방법: http://localhost:8080/swagger-ui/index.html
 
 ### 개발환경
