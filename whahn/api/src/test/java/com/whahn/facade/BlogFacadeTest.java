@@ -75,18 +75,14 @@ class BlogFacadeTest {
 
     @Test
     @DisplayName("[성공] 블로그 검색 API FACADE 테스트")
-    void getBlogContentsSucessTest() {
+    void getBlogContentsSuccessTest() {
         Mockito.when(kakaoBlogService.getBlogContents(ArgumentMatchers.any(), ArgumentMatchers.any()))
                 .thenReturn(getBlogSearchPagingResponse());
-
-        Mockito.when(keywordCountService.getKeywordCountList())
-                .thenReturn(getKeywordCountList());
 
         BlogSearchPagingResponse blogContents = blogFacade.getBlogContents(getMockRequest());
 
         Assertions.assertThat(blogContents.getMeta()).isNotNull();
         Assertions.assertThat(blogContents.getDocument().size()).isEqualTo(1);
-        Assertions.assertThat(blogContents.getTopTenKeywords().size()).isEqualTo(10);
     }
 
     @Test
@@ -98,14 +94,10 @@ class BlogFacadeTest {
         Mockito.when(naverBlogService.getBlogContents(ArgumentMatchers.any(), ArgumentMatchers.any()))
                 .thenReturn(getBlogSearchPagingResponse());
 
-        Mockito.when(keywordCountService.getKeywordCountList())
-                .thenReturn(getKeywordCountList());
-
         BlogSearchPagingResponse blogContents = blogFacade.getBlogContents(getMockRequest());
 
         Assertions.assertThat(blogContents.getMeta()).isNotNull();
         Assertions.assertThat(blogContents.getDocument().size()).isEqualTo(1);
-        Assertions.assertThat(blogContents.getTopTenKeywords().size()).isEqualTo(10);
     }
 
 }

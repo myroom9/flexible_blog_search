@@ -6,7 +6,7 @@ import lombok.Getter;
 public enum CacheType {
     TOP_TEN_KEYWORD_LIST(
             "topTenKeywordCountList", // 캐시 이름
-            60, // 1분
+            20, // 20초
             10 // 캐시 저장 최대 개수
     );
 

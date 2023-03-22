@@ -35,7 +35,7 @@ public class KeywordCountService {
         keywordCount.addCount(keywordCount);
     }
 
-    @Cacheable(cacheNames = "topTenKeywordCountList", unless = "#result.size <= 15")
+    @Cacheable(cacheNames = "topTenKeywordCountList", unless = "#result.size <= 9")
     @Transactional(readOnly = true)
     public List<KeywordCount> getKeywordCountList() {
         List<KeywordCount> topTenKeywordByCount = keywordCountRepository.findTopTenKeywordByCount();

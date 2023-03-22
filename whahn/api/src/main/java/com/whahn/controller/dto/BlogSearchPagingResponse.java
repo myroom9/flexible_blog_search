@@ -24,8 +24,6 @@ public class BlogSearchPagingResponse {
     private Meta meta;
     @Schema(description = "블로그 응답값")
     private List<Document> document;
-    @Schema(description = "인기 검색어 탑 10 !")
-    private List<TopTenKeyword> topTenKeywords;
 
     @Data
     @Builder
@@ -66,28 +64,6 @@ public class BlogSearchPagingResponse {
             this.setContents(document.getDescription());
             this.setDatetime(document.getPostdate());
         }
-    }
-
-    @Data
-    public static class TopTenKeyword {
-        @Schema(description = "인기 검색어")
-        private String keyword;
-        @Schema(description = "인기 검색어 검색 횟수")
-        private long count;
-
-        public TopTenKeyword(KeywordCount keywordCount) {
-            this.keyword = keywordCount.getKeyword();
-            this.count = keywordCount.getCount();
-        }
-    }
-
-    /**
-     * 블로그 응답 객체 + 탑텐 키워드 매핑하는 함수
-     */
-    public static BlogSearchPagingResponse addTopTenKeywordsToBlogResponse(BlogSearchPagingResponse blogResponse, List<KeywordCount> keywordCounts) {
-        List<TopTenKeyword> topTenKeywordsResponse = keywordCounts.stream().map(TopTenKeyword::new).toList();
-        blogResponse.setTopTenKeywords(topTenKeywordsResponse);
-        return blogResponse;
     }
 
     /**

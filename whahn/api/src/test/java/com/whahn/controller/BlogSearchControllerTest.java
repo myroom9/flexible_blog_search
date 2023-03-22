@@ -2,8 +2,10 @@ package com.whahn.controller;
 
 import com.whahn.controller.dto.BlogSearchPagingResponse;
 import com.whahn.controller.dto.CustomRequestPaging;
+import com.whahn.controller.dto.TopTenKeyword;
 import com.whahn.entity.KeywordCount;
 import com.whahn.facade.BlogFacade;
+import com.whahn.service.KeywordCountService;
 import com.whahn.type.blog.CorporationType;
 import com.whahn.type.blog.SortType;
 import org.junit.jupiter.api.DisplayName;
@@ -31,6 +33,9 @@ class BlogSearchControllerTest {
     @MockBean
     private BlogFacade blogFacade;
 
+    @MockBean
+    private KeywordCountService keywordCountService;
+
     @Autowired
     private MockMvc mockMvc;
 
@@ -51,16 +56,12 @@ class BlogSearchControllerTest {
         return builder()
                 .meta(meta)
                 .document(Collections.singletonList(document))
-                .topTenKeywords(getTopTenKeyword())
                 .build();
     }
 
-    private List<TopTenKeyword> getTopTenKeyword() {
+    private List<KeywordCount> getTopTenKeyword() {
         return IntStream.range(0, 10)
                 .mapToObj(o -> KeywordCount.builder().count(1L).keyword("testKeyword" + o).build())
-                .toList()
-                .stream()
-                .map(TopTenKeyword::new)
                 .toList();
     }
 
@@ -92,10 +93,38 @@ class BlogSearchControllerTest {
                 .andExpect(jsonPath("$.status").value(200))
                 .andExpect(jsonPath("$.code").value("20000000"))
                 .andExpect(jsonPath("$.message").value("success"))
-                .andExpect(jsonPath("$.data.topTenKeywords").isArray())
                 .andExpect(jsonPath("$.data.document").isArray())
                 .andExpect(jsonPath("$.data.meta").exists())
         ;
     }
 
+    @Test
+    @DisplayName("[성공] 상위 키워드 검색")
+    void getTopTenKeywordSuccessTest() throws Exception {
+
+        given(keywordCountService.getKeywordCountList())
+                .willReturn(getTopTenKeyword());
+
+        mockMvc.perform(get("/v1/topten-keyword"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.status").value(200))
+                .andExpect(jsonPath("$.code").value("20000000"))
+                .andExpect(jsonPath("$.message").value("success"))
+                .andExpect(jsonPath("$.data").isArray())
+        ;
+    }
+
+    @Test
+    @DisplayName("[성공] 상위 키워드 검색 (키워드가 존재하지 않을 경우)")
+    void getTopTenKeywordSuccessTest2() throws Exception {
+        mockMvc.perform(get("/v1/topten-keyword"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.status").value(200))
+                .andExpect(jsonPath("$.code").value("20000000"))
+                .andExpect(jsonPath("$.message").value("success"))
+                .andExpect(jsonPath("$.data").isArray())
+        ;
+    }
 }

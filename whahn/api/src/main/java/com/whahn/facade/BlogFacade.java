@@ -47,8 +47,7 @@ public class BlogFacade {
             blogContents = naverBlogService.getBlogContents(request, apiMetaInformation);
         }
 
-        List<KeywordCount> topTenKeywordList = keywordCountService.getKeywordCountList();
-        return BlogSearchPagingResponse.addTopTenKeywordsToBlogResponse(blogContents, topTenKeywordList);
+        return blogContents;
     }
 
     /**
