@@ -10,7 +10,7 @@
   - 블로그 검색 API
     - ```
       http://localhost:8080/v1/search/blog?page=1&size=10&sortType=accuracy&corporationType=KAKAO&searchKeyword=카카오뱅크
-    - 상위 키워드 검색 API
+  - 상위 키워드 검색 API
     - ```
       http://localhost:8080/v1/topten-keyword
 - jar donwload link:https://github.com/myroom9/flexible_blog_search/blob/main/whahn-blog-api.jar
